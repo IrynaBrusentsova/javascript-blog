@@ -36,6 +36,51 @@ function titleClickHandler(event){
    targetArticle.classList.add('active');
 }
 
+// ====================
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
+
+
+function generateTitleLinks(){
+   
+  /*[DONE] remove contents of titleList */
+  const titleList = document.querySelector(optTitleListSelector);
+  console.log (titleList);
+
+  function clearMessages(){
+    titleList.querySelectorAll('*').forEach((titleList)=> titleList.remove());
+  }clearMessages();
+  
+
+  /*[DONE] for each article */
+   const articles = document.querySelectorAll(optArticleSelector);
+    console.log (articles);
+
+   articles.forEach((article)=>{
+
+  /*[DONE] get the article id */
+    const articleId = article.id;
+    console.log (articleId);
+
+  /*[DONE] find the title element */
+    const articleTitle = article.querySelector(optTitleSelector);
+    console.log (articleTitle);
+
+  /*[DONE] get the title from the title element */
+    const title = articleTitle.innerHTML;
+    console.log (title);
+
+  /*[DONE] create HTML of the link */
+     const link = '<li><a href="#' + articleId + '"><span>' + title + '</span></a></li>';
+
+  /*[DONE] insert link into titleList */
+    titleList.innerHTML = titleList.innerHTML + link;
+   });
+     
+  }
+generateTitleLinks();
+
 const links = document.querySelectorAll('.titles a');
 
 for(let link of links){
@@ -43,7 +88,25 @@ for(let link of links){
 }
 
 
-// ====================
+// =================
+
+const blockForMouse = document.querySelector('.posts')
+blockForMouse.addEventListener("mouseover", function (event) {
+	let target = event.target.closest('.post-title');
+	// переход не на <.post-title> - ігнорувати
+	if (!target) return;
+  target.style.cssText = `background-color: #77608d`;
+});
+
+blockForMouse.addEventListener("mouseout", function (event) {
+	let target = event.target.closest('.post-title');
+	// переход не на <.post-title> - ігнорувати
+	if (!target) return;
+	target.style.cssText = ``;
+})
+
+
+
 
 
 
