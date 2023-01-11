@@ -127,3 +127,34 @@ body {
     margin: 0 10px 0 0;
   }
 }
+body {
+  cursor: pointer;
+  background-color: rgb(220, 241, 143);
+}
+.active {    
+  font-weight: 600;
+  animation-name: article-content;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0.5s;
+  animation-fill-mode:forwards;
+  position: relative;
+  z-index: 2;
+}
+@keyframes article-content {
+  0% {
+      opacity: 0.8; 
+  } 
+  100% {
+      opacity: 1;
+      color: rgb(13, 40, 13);
+      line-height: 1.8;
+      transform: scale(1.1);
+  }
+}
+/* Tablet */
+@media (max-width: 768px) {
+  .wrapper {
+  flex-direction: column; 
+}
+}
