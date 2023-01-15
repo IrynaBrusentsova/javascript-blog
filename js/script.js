@@ -181,8 +181,8 @@ function authorClickHandler(event){
     tagLink.classList.add('active');
   }
   /* END LOOP: for each found tag link */
- /* execute function "generateAuthor" with article selector as argument */
-  generateAuthor('[data-author="' + articleTagsAuthor + '"]');
+  /* execute function "generateAuthor" with article selector as argument */
+  generateTitleLinks('[data-author="' + tag + '"]');
 }
 
 function addClickListenersToAuthors() {
@@ -199,7 +199,53 @@ addClickListenersToAuthors();
 
 
 // ============TAG CLOUD
-const optTagsListSelector = '.tags.list';
+
+ const optTagsListSelector = '.tags.list',
+ optAuthorsListSelector = '.authors.list';
+
+function generateTagsCloud(){
+  /* [NEW] create a new variable allTags with an empty array */
+  let allTags = [];
+  /* [NEW] create a new variable allTags with an empty object */
+  /* find all articles */
+  const articles = document.querySelectorAll(optArticleSelector);
+  /* START LOOP: for every article: */
+    /* find tags wrapper */
+    for (let article of articles){
+      const tagWrapper = article.querySelector(optArticleTagsSelector);
+    /* make html variable with empty string */
+    let html = ' ';
+   /* get tags from data-tags attribute */
+    const articleTags = article.getAttribute('data-tags');
+     /* split tags into array */
+    const articleTagsArray = articleTags.split (' ');
+     /* START LOOP: for each tag */
+
+    for (let tag of articleTagsArray) {
+       /* generate HTML of the link */
+      const link = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+     /* add generated code to html variable */
+      let html = ' ' + link;
+       /* [NEW] check if this link is NOT already in allTags */
+      if(allTags.indexOf(link) == -1){
+      /* [NEW] add generated code to allTags array */
+        allTags.push(link);
+      }
+    }/* END LOOP: for each tag */
+    /* insert HTML of all the links into the tags wrapper */
+    tagWrapper.innerHTML = tagWrapper.innerHTML +  html;
+   }/* END LOOP: for every article: */
+
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector(optTagsListSelector);
+
+  /* [NEW] add html from allTags to tagList */
+  tagList.innerHTML = allTags.join(' ');
+}
+generateTagsCloud();
+
+
+
 
 //========TEMPLATES
 
@@ -208,14 +254,14 @@ const optTagsListSelector = '.tags.list';
 const blockForMouse = document.querySelector('.posts')
 blockForMouse.addEventListener("mouseover", function (event) {
   let target = event.target.closest('.post-title');
-  // переход не на <.post-title> - ігнорувати
+  // transition not to <.post-title> - ignore
   if (!target) return;
   target.style.cssText = `background-color: #77608d`;
 });
 
 blockForMouse.addEventListener("mouseout", function (event) {
   let target = event.target.closest('.post-title');
-  // переход не на <.post-title> - ігнорувати
+  // transition not to <.post-title> - ignore
   if (!target) return;
   target.style.cssText = ``;
 })
