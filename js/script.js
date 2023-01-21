@@ -297,8 +297,6 @@ function generateAuthors(){
 
      const linkData = {id: articleTagsAuthor, title: articleTagsAuthor};
      const linkHTML= templates.articleLink(linkData); 
-
-     
     
       /* add generated code to html variable */
       html = html + linkHTML;
@@ -346,10 +344,8 @@ generateAuthors();
 function authorClickHandler(event){
   /* prevent default action for this event */
   event.preventDefault();
-
   /* make new constant named "clickedElement" and give it the value of "this" */
   const clickedElement = this;
-
   /* make a new constant "href" and read the attribute "href" of the clicked element */
   const href = clickedElement.getAttribute('href');
   console.log(href);
@@ -358,7 +354,6 @@ function authorClickHandler(event){
   const author = href.replace('#author-', '');
   console.log(author);
   
-
   /* find all tag links with class active */
   const authorLinks = document.querySelectorAll('a.active[href^="#author-"]');
   console.log(authorLinks);
@@ -368,13 +363,11 @@ function authorClickHandler(event){
     /* remove class active */
     authorLink.classList.remove('active');
   }
-
   /* END LOOP: for each active tag link */
 
   /* find all author links with "href" attribute equal to the "href" constant */
   const allAuthorLinks = document.querySelectorAll('a[href="'+ href +'"]');
   console.log(allAuthorLinks);
-
 
   /* START LOOP: for each found author link */
   for (let allAuthorLink of allAuthorLinks) {
@@ -385,9 +378,7 @@ function authorClickHandler(event){
 
   /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-author="' + author + '"]');
-  
   console.log('[data-author="' + author + '"]');
-
 }
 
 
@@ -409,14 +400,14 @@ addClickListenersToAuthors();
 const blockForMouse = document.querySelector('.posts')
 blockForMouse.addEventListener("mouseover", function (event) {
 	let target = event.target.closest('.post-title');
-	// переход не на <.post-title> - ігнорувати
+
 	if (!target) return;
   target.style.cssText = `background-color: #77608d`;
 });
 
 blockForMouse.addEventListener("mouseout", function (event) {
 	let target = event.target.closest('.post-title');
-	// переход не на <.post-title> - ігнорувати
+	
 	if (!target) return;
 	target.style.cssText = ``;
 })
