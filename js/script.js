@@ -7,7 +7,6 @@ const templates = {
   authorCloudLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
 };
 
-
 function titleClickHandler(event){
   event.preventDefault();
   const clickedElement = this;
