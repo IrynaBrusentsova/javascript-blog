@@ -133,13 +133,14 @@ body {
 }
 .active {    
   font-weight: 600;
-  animation-name: article-content;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0.5s;
-  animation-fill-mode:forwards;
-  position: relative;
-  z-index: 2;
+
+  // animation-name: article-content;
+  // animation-duration: 1.5s;
+  // animation-timing-function: ease-in-out;
+  // animation-delay: 0.5s;
+  // animation-fill-mode:forwards;
+  // position: relative;
+  // z-index: 2;
 }
 @keyframes article-content {
   0% {
@@ -149,7 +150,7 @@ body {
       opacity: 1;
       color: rgb(13, 40, 13);
       line-height: 1.8;
-      transform: scale(1.1);
+      // transform: scale(1.1);
   }
 }
 /* Tablet */
